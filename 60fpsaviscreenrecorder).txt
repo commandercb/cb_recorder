@@ -1,0 +1,134 @@
+#include <windows.h>
+#include <vfw.h>
+#include <iostream>
+#include <string>
+#include <thread>
+#include <chrono>
+
+#pragma comment(lib, "vfw32.lib")
+
+#define FRAME_RATE 60 // 60 FPS
+#define RECORD_DURATION 60 // 60 seconds
+
+void captureScreenToAVI(const std::string& outputFileName) {
+    // Get screen dimensions
+    int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+
+    // Create a device context for the entire screen
+    HDC hScreenDC = GetDC(nullptr);
+    HDC hMemoryDC = CreateCompatibleDC(hScreenDC);
+    HBITMAP hBitmap = CreateCompatibleBitmap(hScreenDC, screenWidth, screenHeight);
+    SelectObject(hMemoryDC, hBitmap);
+
+    // Open an AVI file
+    PAVIFILE aviFile;
+    AVIFileInit();
+    if (AVIFileOpen(&aviFile, outputFileName.c_str(), OF_WRITE | OF_CREATE, nullptr) != 0) {
+        std::cerr << "Failed to open AVI file!" << std::endl;
+        return;
+    }
+
+    // Set up AVI stream
+    AVISTREAMINFO streamInfo = {};
+    streamInfo.fccType = streamtypeVIDEO;
+    streamInfo.dwScale = 1;
+    streamInfo.dwRate = FRAME_RATE;
+    streamInfo.dwSuggestedBufferSize = screenWidth * screenHeight * 3;
+    streamInfo.rcFrame.right = screenWidth;
+    streamInfo.rcFrame.bottom = screenHeight;
+
+    PAVISTREAM aviStream;
+    if (AVIFileCreateStream(aviFile, &aviStream, &streamInfo) != 0) {
+        std::cerr << "Failed to create AVI stream!" << std::endl;
+        AVIFileRelease(aviFile);
+        return;
+    }
+
+    // Set up AVI compressor
+    AVICOMPRESSOPTIONS compressOptions = {};
+    compressOptions.fccType = streamtypeVIDEO;
+    compressOptions.fccHandler = mmioFOURCC('M', 'J', 'P', 'G'); // Use Motion JPEG
+    compressOptions.dwQuality = 10000;
+
+    PAVISTREAM compressedStream;
+    if (AVIMakeCompressedStream(&compressedStream, aviStream, &compressOptions, nullptr) != 0) {
+        std::cerr << "Failed to create compressed stream!" << std::endl;
+        AVIStreamRelease(aviStream);
+        AVIFileRelease(aviFile);
+        return;
+    }
+
+    // Set stream format
+    BITMAPINFOHEADER bmpInfoHeader = {};
+    bmpInfoHeader.biSize = sizeof(BITMAPINFOHEADER);
+    bmpInfoHeader.biWidth = screenWidth;
+    bmpInfoHeader.biHeight = -screenHeight; // Negative to indicate top-down bitmap
+    bmpInfoHeader.biPlanes = 1;
+    bmpInfoHeader.biBitCount = 24; // 24-bit color
+    bmpInfoHeader.biCompression = BI_RGB;
+    bmpInfoHeader.biSizeImage = screenWidth * screenHeight * 3;
+
+    if (AVIStreamSetFormat(compressedStream, 0, &bmpInfoHeader, sizeof(bmpInfoHeader)) != 0) {
+        std::cerr << "Failed to set stream format!" << std::endl;
+        AVIStreamRelease(compressedStream);
+        AVIStreamRelease(aviStream);
+        AVIFileRelease(aviFile);
+        return;
+    }
+
+    // Capture frames
+    std::cout << "Recording..." << std::endl;
+    for (int frame = 0; frame < FRAME_RATE * RECORD_DURATION; ++frame) {
+        // Capture screen
+        BitBlt(hMemoryDC, 0, 0, screenWidth, screenHeight, hScreenDC, 0, 0, SRCCOPY);
+
+        // Get bitmap data
+        BITMAPINFOHEADER bmpHeader = {};
+        bmpHeader.biSize = sizeof(BITMAPINFOHEADER);
+        bmpHeader.biWidth = screenWidth;
+        bmpHeader.biHeight = -screenHeight; // Negative to indicate top-down bitmap
+        bmpHeader.biPlanes = 1;
+        bmpHeader.biBitCount = 24;
+        bmpHeader.biCompression = BI_RGB;
+
+        int rowSize = ((screenWidth * bmpHeader.biBitCount + 31) / 32) * 4;
+        BYTE* buffer = new BYTE[rowSize * screenHeight];
+
+        GetDIBits(hMemoryDC, hBitmap, 0, screenHeight, buffer, (BITMAPINFO*)&bmpHeader, DIB_RGB_COLORS);
+
+        // Write frame to AVI
+        if (AVIStreamWrite(compressedStream, frame, 1, buffer, bmpHeader.biSizeImage, AVIIF_KEYFRAME, nullptr, nullptr) != 0) {
+            std::cerr << "Failed to write frame " << frame << "!" << std::endl;
+        }
+
+        delete[] buffer;
+
+        // Delay for frame rate
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000 / FRAME_RATE));
+    }
+
+    std::cout << "Recording complete." << std::endl;
+
+    // Clean up
+    AVIStreamRelease(compressedStream);
+    AVIStreamRelease(aviStream);
+    AVIFileRelease(aviFile);
+    AVIFileExit();
+
+    DeleteObject(hBitmap);
+    DeleteDC(hMemoryDC);
+    ReleaseDC(nullptr, hScreenDC);
+}
+
+int main() {
+    std::string outputFileName = "gameplay_60fps.avi";
+
+    std::cout << "Starting gameplay recording for " << RECORD_DURATION << " seconds at " << FRAME_RATE << " FPS..." << std::endl;
+
+    captureScreenToAVI(outputFileName);
+
+    std::cout << "Recording saved to " << outputFileName << std::endl;
+
+    return 0;
+}
