@@ -154,7 +154,10 @@ bool initializeFFmpeg(AVFormatContext** formatContext, AVCodecContext** codecCon
     av_dict_set(&opts, "temporal-aq", "1", 0);
     av_dict_set(&opts, "spatial-aq", "1", 0);
     av_dict_set(&opts, "aq-strength", "15", 0);
-    av_dict_set(&opts, "profile", "100", 0);
+//    av_dict_set(&opts, "profile", "100", 0);
+    av_dict_set(&opts, "profile", "high", 0);       // Most common
+// av_dict_set(&opts, "profile", "main", 0);    // If you want baseline
+// av_dict_set(&opts, "profile", "baseline", 0);
 
     if (avcodec_open2(*codecContext, codec, &opts) < 0) {
         std::cerr << "Error: Could not open codec.\n";
