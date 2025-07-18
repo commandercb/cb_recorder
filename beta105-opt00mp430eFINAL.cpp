@@ -1,3 +1,4 @@
+//     unable to get ghatgpt to fix this code ----  there is one bad line in here somewhere - but i cant do thisa aNYMORE 
 //   lol  just encoded this baby - but i cant run it on this hardware - needs a nvenc 2000  or higher ... 
 //
 //            g++ -std=c++17 -o videoaudio125.exe videoaudio125.cpp     -I"C:/msys64/mingw64/include"     -L"C:/msys64/mingw64/lib"     -lavcodec -lavformat -lavutil -lswscale     -lgdi32 -luser32
