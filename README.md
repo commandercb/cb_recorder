@@ -1,3 +1,8 @@
+-beta09 is the newer working version - need ffmpeg in path
+audio09i   is a audio recorder --- 
+________________    both work good 
+
+
 no idea why this is sucjh a mess-     i have no clue \\
 
 thakes hours  hours HOURS  to find a way to uplad afile  -- hours 
