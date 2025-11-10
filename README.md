@@ -1,3 +1,10 @@
+no idea why this is sucjh a mess-     i have no clue \\
+
+thakes hours  hours HOURS  to find a way to uplad afile  -- hours 
+
+i have no idea what is going on with this sitw -   it make no sence to me at  all   
+
+
 sigh
 
 
