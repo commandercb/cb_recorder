@@ -1,9 +1,7 @@
 i am using audio09i2.exe  and finalrecorder06fps60.cpp       probably    - 
+ctrl-c to exit 
 
 
--beta09 is the newer working version - need ffmpeg in path
-audio09i   is a audio recorder --- 
-________________    both work good 
 
 
 60 fps    medium  make s a avi then tries to convert to mp4 cfr
@@ -12,7 +10,11 @@ but the avi is good enough  - probably good enough to work with as is
 it is really good 
 set res in the code  and fps and other stuff
 
-
+--------
+//-beta09 is the newer working version - need ffmpeg in path
+//audio09i   is a audio recorder --- 
+//________________    both work good 
+//..
 
 
 no idea why this is sucjh a mess-     i have no clue \\
@@ -25,7 +27,7 @@ i have no idea what is going on with this sitw -   it make no sence to me at  al
 sigh
 
 
-activate4d with "u"  key
+activate4d with "u"  key   differetn vewrsions do diffeenet stuuf 
 a   is the audio recorder
 adding the newer tweak
 
