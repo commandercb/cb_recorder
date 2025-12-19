@@ -1,3 +1,6 @@
+i am using audio09i2.exe  and finalrecorder06fps60.cpp       probably    - 
+
+
 -beta09 is the newer working version - need ffmpeg in path
 audio09i   is a audio recorder --- 
 ________________    both work good 
