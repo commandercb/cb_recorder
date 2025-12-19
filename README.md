@@ -6,6 +6,15 @@ audio09i   is a audio recorder ---
 ________________    both work good 
 
 
+60 fps    medium  make s a avi then tries to convert to mp4 cfr
+but the avi is good enough  - probably good enough to work with as is 
+
+it is really good 
+set res in the code  and fps and other stuff
+
+
+
+
 no idea why this is sucjh a mess-     i have no clue \\
 
 thakes hours  hours HOURS  to find a way to uplad afile  -- hours 
