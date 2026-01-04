@@ -1,4 +1,4 @@
-i am using audio09i2.exe  and finalrecorder06fps60.cpp       probably    - 
+i am using audio09i2.exe  and finalrecorder06fps60nvenc.cpp       probably    - 
 ctrl-c to exit 
 
 
