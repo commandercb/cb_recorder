@@ -1,7 +1,8 @@
 i am using audio09i2.exe  and finalrecorder06fps60nvenc.cpp       probably    - 
 ctrl-c to exit 
 
-
+various ffmpeg nvenc drivers and who know what else necessary to build
+video recording code is - can be - complicated 
 
 
 60 fps    medium  make s a avi then tries to convert to mp4 cfr
