@@ -1,4 +1,9 @@
-i am using audio09i2.exe  and finalrecorder06fps60nvenc.cpp       probably    - 
+
+gpu     - finalrecorder_nvenc_fixed3gpu.cpp
+cpu     - finalrecorder_fixed3.cpp   ******   specifiacally designed for OLD nvIDIA DRIVER    ****************
+audio   - audio09i2.exe
+
+audio09i2.exe  and finalrecorder06fps60nvenc.cpp       probably    - 
 ctrl-c to exit 
 
 various ffmpeg nvenc drivers and who know what else necessary to build
