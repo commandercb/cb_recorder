@@ -1,5 +1,5 @@
 
-gpu     - finalrecorder_nvenc_fixed3gpu.cpp<br>
+gpu            recorder_fixed3gpu.exe         i will find the file and fix this later - my   u.cpp<br>
 cpu     - finalrecorder_fixed3.cpp   ******   specifiacally designed for OLD nvIDIA DRIVER    ****************<br>
 audio   - audio09i2.exe<br>
 
