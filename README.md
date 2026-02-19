@@ -1,9 +1,9 @@
 
 gpu            recorder_fixed3gpu.exe         i will find the file and fix this later - my   u.cpp<br>
-cpu     - finalrecorder_fixed3.cpp   ******   specifiacally designed for OLD nvIDIA DRIVER    ****************<br>
+cpu     - f      ******   specifiacally designed for OLD nvIDIA DRIVER    ****************<br>
 audio   - audio09i2.exe<br>
 
-audio09i2.exe  and finalrecorder06fps60nvenc.cpp       probably    - <br>
+audio09i2.exe  and       recorder_fixed3gpu.exe      gpu  /////   finalrecorder_fixed3.cpp    CPU       probably   i guiess  - <br>
 ctrl-c to exit <br>
 
 various ffmpeg nvenc drivers and who know what else necessary to build<br><br>
