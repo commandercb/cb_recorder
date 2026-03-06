@@ -6,6 +6,9 @@ audio   - audio09i2.exe<br>
 audio09i2.exe  and       recorder_fixed3gpu.exe      gpu  /////   finalrecorder_fixed3.cpp    CPU       probably   i guiess  - <br>
 ctrl-c to exit <br>
 
+ALSO   -  these are extremly dependant on video mode - full / boarderless / whatever
+the cpu recorder likes borderless and the nvenc  prefers FULLSCREEN -   apparently 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 various ffmpeg nvenc drivers and who know what else necessary to build<br><br>
 video recording code is - can be - complicated <br>
 <br><br>
