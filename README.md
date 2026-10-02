@@ -335,7 +335,7 @@ Video:
 
 ```text
 1600×900
-29.970 FPS reported by that particular test
+60 FPS reported by that particular test
 H.264 Main@L4.1
 YUV420P
 8-bit
