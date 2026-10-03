@@ -354,7 +354,7 @@ One of the primary goals of CBRecorderZero is minimizing recording overhead.
 During testing of the 60-FPS build:
 
 ```text
-CPU: approximately 0–0.3%
+CPU: approximately  9%
 GPU encoder: approximately 7–12%
 ```
 
